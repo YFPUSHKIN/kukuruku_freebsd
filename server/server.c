@@ -4,7 +4,7 @@
 #include <inttypes.h>
 #include <string.h>
 #include <unistd.h>
-#include <endian.h>
+#include <sys/endian.h>
 
 #include <err.h>
 
@@ -389,13 +389,13 @@ static void create_read_write_threads() {
   if(ret != 0) {
     err(EXIT_FAILURE, "Cannot create SDR thread!\n");
   }
-  pthread_setname_np(sdr_thread, "sdr_read_thr");
+  void pthread_set_name_np(pthread_t sdr_thread, const char *sdr_read_thr);
 
   ret = pthread_create(&socket_thread, NULL, &socket_write_thr, NULL);
   if(ret != 0) {
     err(EXIT_FAILURE, "Cannot create socket thread!\n");
   }
-  pthread_setname_np(socket_thread, "socket_write_t");
+  void pthread_set_name_np(pthread_t socket_thread, const char *socket_write_t);
 
 }
 

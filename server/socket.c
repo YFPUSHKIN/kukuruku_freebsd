@@ -137,7 +137,7 @@ void * client_read_thr(void * param) {
 
   SLIST_INIT(&(me->req_frames_head));
 
-  ssize_t ret;
+  size_t ret;
 
   while(1) {
     int32_t size;
@@ -204,7 +204,7 @@ void network_listener(char * host, char * port) {
     if(ret < 0) {
       err(EXIT_FAILURE, "Cannot create client thread");
     }
-    pthread_setname_np(thread_id, "client_read_t");
+    void pthread_setname_np(pthread_t thread_id, const char *client_read_t);
 
     pthread_detach(thread_id);
 

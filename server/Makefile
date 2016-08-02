@@ -1,4 +1,4 @@
-CPP = gcc
+CPP = gcc48
 CFLAGS = -pedantic -pthread -std=gnu99 -Wall -lprotobuf-c -lm -lvolk -lfftw3f -O3 -g -ggdb3
 
 .PHONY: clean
@@ -11,10 +11,10 @@ c2s.pb-c.c:
 	protoc-c --c_out=. c2s.proto
 
 %.o: %.c
-	$(CPP) -c $< -o $@ $(INC) $(CFLAGS)
+	$(CPP) -c $< -o $@ $(INC) $(CFLAGS) -I/usr/local/include
 
 server: c2s.pb-c.c $(OTHINGS)
-	$(CPP) $(OTHINGS) -o server $(CFLAGS)
+	$(CPP) $(OTHINGS) -o server $(CFLAGS) -I/usr/local/include
 
 clean:
 	rm -fr *.o server c2s.pb-c.h c2s.pb-c.c

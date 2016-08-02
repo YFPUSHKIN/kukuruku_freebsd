@@ -3,11 +3,11 @@
 #include <unistd.h>
 #include <fftw3.h>
 
-ssize_t readn(int fd, void * buf2, int n) {
+size_t readn(int fd, void * buf2, int n) {
   char * buf = (char*)buf2;
   int pos = 0;
   while(pos<n) {
-    ssize_t j = read(fd, buf+pos, n-pos);
+    size_t j = read(fd, buf+pos, n-pos);
     if(j <= 0) {
       return j;
     }
@@ -16,11 +16,11 @@ ssize_t readn(int fd, void * buf2, int n) {
   return pos;
 }
 
-ssize_t writen(int fd, void * buf2, int n) {
+size_t writen(int fd, void * buf2, int n) {
   char * buf = (char*)buf2;
   int pos = 0;
   while(pos<n) {
-    ssize_t j = write(fd, buf+pos, n-pos);
+    size_t j = write(fd, buf+pos, n-pos);
     if(j <= 0) {
       return j;
     }
